@@ -1,17 +1,13 @@
 function indexOf(firstString, secondString) {
   let finalIndex = firstString.length - secondString.length;
-  let firstCharacter;
-  let matchCount;
 
   for (let firstIndex = 0; firstIndex <= finalIndex; firstIndex++) {
-    firstCharacter = firstIndex;
-    matchCount = secondString.length;
+    let matchCount = secondString.length;
 
     for (let secondIndex = 0; secondIndex < secondString.length; secondIndex++) {
-      if (firstString[firstCharacter] === secondString[secondIndex]) {
+      if (firstString[firstIndex + secondIndex] === secondString[secondIndex]) {
         matchCount -= 1;
       }
-      firstCharacter++;
     }
 
     if (matchCount === 0) {
@@ -23,7 +19,23 @@ function indexOf(firstString, secondString) {
 }
 
 function lastIndexOf(firstString, secondString) {
-  // statements
+  let finalIndex = firstString.length - secondString.length;
+
+  for (let firstIndex = finalIndex; firstIndex >= 0; firstIndex--) {
+    let matchCount = secondString.length;
+
+    for (let secondIndex = 0; secondIndex < secondString.length; secondIndex++) {
+      if (firstString[firstIndex + secondIndex] === secondString[secondIndex]) {
+        matchCount -= 1;
+      }
+    }
+
+    if (matchCount === 0) {
+      return firstIndex;
+    }
+  }
+
+  return -1;
 }
 
 console.log(indexOf('Some strings', 's'));                      // 5
@@ -31,6 +43,6 @@ console.log(indexOf('Blue Whale', 'Whale'));                    // 5
 console.log(indexOf('Blue Whale', 'Blute'));                    // -1
 console.log(indexOf('Blue Whale', 'leB'));                      // -1
 
-// lastIndexOf('Some strings', 's');                  // 11
-// lastIndexOf('Blue Whale, Killer Whale', 'Whale');  // 19
-// lastIndexOf('Blue Whale, Killer Whale', 'all');    // -1
+console.log(lastIndexOf('Some strings', 's'));                  // 11
+console.log(lastIndexOf('Blue Whale, Killer Whale', 'Whale'));  // 19
+console.log(lastIndexOf('Blue Whale, Killer Whale', 'all'));    // -1
